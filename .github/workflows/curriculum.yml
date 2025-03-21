@@ -14,7 +14,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
+          root_file: jeff-curriculum.tex
 
       - name: Get current date
         id: date

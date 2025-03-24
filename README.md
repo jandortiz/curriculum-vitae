@@ -18,6 +18,8 @@ En el proyecto se puede encontrar las siguientes características a considerar:
 
 ## Estructura del Repositorio
 
+A continuación se detalla información relevante del repositorio.
+
 - `jeff-curriculum.tex`: Archivo principal en LaTeX que compila el CV.
 - `awesome-cv.cls`: Archivo de clase de LaTeX que define el estilo y diseño del CV.
 
@@ -30,7 +32,7 @@ En el proyecto se puede encontrar las siguientes características a considerar:
 
 ## Personalización
 
-Para actualizar o personalizar tu CV:
+Para actualizar o personalizar el CV:
 
 - **Editar Secciones:**
 
@@ -38,15 +40,14 @@ Para actualizar o personalizar tu CV:
 
 - **Actualizar Estilos:**
 
-    Si deseas cambiar el diseño, puedes editar el archivo `awesome-cv.cls` o los archivos de estilo asociados.
+    En caso de cambiar el diseño, puede editar el archivo `awesome-cv.cls` o los archivos de estilo asociados.
 
 - **Añadir Nuevos Contenidos:**
 
-    Puedes agregar nuevas secciones o modificar las existentes para reflejar tu información actualizada.
+    Puede agregar nuevas secciones o modificar las existentes para reflejar su información actualizada.
 
 ## Integración Continua (CI)
 
-El repositorio cuenta con configuraciones de **GitHub Actions** para compilar el documento automáticamente. Cada vez que realices un push o una pull request, se verificará que el CV compile sin errores, lo que ayuda a mantener la calidad y consistencia del documento.
+El repositorio cuenta con configuraciones de **GitHub Actions** para compilar el documento automáticamente. 
 
-## ¡Gracias!
-Si encuentras algún problema, tienes sugerencias o deseas contribuir al proyecto, no dudes en abrir una issue o enviar una pull request.
+Cada vez que realice un push o un pull request, se verificará que el CV compile sin errores, lo que ayuda a mantener la calidad y consistencia del documento.

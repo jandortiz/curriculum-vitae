@@ -51,7 +51,7 @@ jobs:
           git commit -m "feat: Actualiza curriculum - ${{ steps.date.outputs.date }}" || echo "No changes to commit"
           
           # Push al branch (sin --force para mantener historial)
-          git push origin curriculum-vitae-pdf
+          git push origin curriculum-vitae-pdf-en
 
       - name: Upload PDF file as artifact
         uses: actions/upload-artifact@v4

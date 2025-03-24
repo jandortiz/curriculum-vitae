@@ -40,7 +40,7 @@ jobs:
           
           # Verificar y copiar el PDF
           if [ -f "jeff-curriculum-en.pdf" ]; then
-            cp jeff-curriculum.pdf-en ./jeff-curriculum-en.pdf
+            cp jeff-curriculum-en.pdf ./jeff-curriculum-en.pdf
           else
             echo "jeff-curriculum-en.pdf not found, creating empty file"
             touch jeff-curriculum-en.pdf

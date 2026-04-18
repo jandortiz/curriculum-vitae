@@ -1,53 +1,70 @@
 # Curriculum Vitae
 
-El objetivo de este proyecto es generar un CV profesional en formato PDF que pueda ser fácilmente actualizado y personalizado. Entre los aspectos clave se destacan:
+CV profesional en formato PDF generado con LaTeX, basado en la plantilla [Awesome CV](https://github.com/posquit0/Awesome-CV).
 
-Tomo como base la popular plantilla [Awesome CV](https://github.com/posquit0/Awesome-CV). 
+El proyecto genera **4 versiones** del CV: dos roles (Analista de datos / Ingeniero de datos) en dos idiomas (Español / Inglés).
 
-## Descripción del Proyecto
+## Versiones disponibles
 
-En el proyecto se puede encontrar las siguientes características a considerar:
+| Archivo | Rol | Idioma |
+|---|---|---|
+| `cv-analyst-es.tex` | Analista de datos | Español |
+| `cv-analyst-en.tex` | Data Analyst | English |
+| `cv-engineer-es.tex` | Ingeniero de datos | Español |
+| `cv-engineer-en.tex` | Data Engineer | English |
 
+Los PDFs compilados se generan en la carpeta `output/`.
 
-- **Modularidad:** El CV se divide en secciones individuales ubicadas en la carpeta `cv-sections/`, lo que facilita su edición y mantenimiento.
+## Estructura del repositorio
 
-- **Diseño Profesional:** Basado en la plantilla Awesome CV, el diseño es moderno y está optimizado para resaltar información relevante.
+```
+curriculum-vitae/
+├── cv-sections/
+│   ├── shared/               # Contenido común a todos los roles e idiomas
+│   │   ├── experience.tex / experience_en.tex
+│   │   ├── academic_experience.tex / academic_experience_en.tex
+│   │   └── education.tex / education_en.tex
+│   ├── analyst/              # Específico del perfil Analista de datos
+│   │   ├── summary.tex / summary_en.tex
+│   │   └── skills.tex / skills_en.tex
+│   └── engineer/             # Específico del perfil Ingeniero de datos
+│       ├── summary.tex / summary_en.tex
+│       └── skills.tex / skills_en.tex
+├── fonts/                    # Fuentes Roboto y Source Sans Pro
+├── output/                   # PDFs generados localmente (ignorado por git)
+├── .github/workflows/
+│   └── build-cvs.yml         # CI: compila las 4 versiones en cada push
+├── awesome-cv.cls            # Clase LaTeX con el diseño del CV
+├── Makefile                  # Compilación local
+├── cv-analyst-es.tex         # Archivos principales (uno por versión)
+├── cv-analyst-en.tex
+├── cv-engineer-es.tex
+└── cv-engineer-en.tex
+```
 
-- **Automatización:** Se han configurado flujos de trabajo de integración continua (CI) para asegurar que el documento compile correctamente en cada actualización.
+## Compilación local
 
+Requiere `latexmk` y `lualatex` (incluidos en TeX Live o MiKTeX).
 
-## Estructura del Repositorio
+```bash
+make              # Compila las 4 versiones → output/
+make cv-analyst-es   # Compila solo una versión
+make clean        # Elimina la carpeta output/
+```
 
-A continuación se detalla información relevante del repositorio.
+## Dónde editar cada cosa
 
-- `jeff-curriculum.tex`: Archivo principal en LaTeX que compila el CV.
-- `awesome-cv.cls`: Archivo de clase de LaTeX que define el estilo y diseño del CV.
+| Cambio | Archivo(s) a editar |
+|---|---|
+| Nuevo trabajo | `cv-sections/shared/experience.tex` y `experience_en.tex` |
+| Nuevo título académico | `cv-sections/shared/education.tex` y `education_en.tex` |
+| Habilidades del analista | `cv-sections/analyst/skills.tex` y `skills_en.tex` |
+| Habilidades del ingeniero | `cv-sections/engineer/skills.tex` y `skills_en.tex` |
+| Presentación del analista | `cv-sections/analyst/summary.tex` y `summary_en.tex` |
+| Presentación del ingeniero | `cv-sections/engineer/summary.tex` y `summary_en.tex` |
+| Datos personales (nombre, contacto) | Los 4 archivos `.tex` raíz |
+| Diseño y estilos | `awesome-cv.cls` |
 
-- **Carpeta `cv-sections/`**: Contiene archivos individuales para cada sección del CV (por ejemplo, experiencia, educación, habilidades).
+## Integración continua (CI)
 
-- **Carpeta `fonts/`**: Incluye las fuentes utilizadas en el documento.
-
-- **Carpeta `.github/workflows/`**: Configuraciones para la integración continua del proyecto.
-
-
-## Personalización
-
-Para actualizar o personalizar el CV:
-
-- **Editar Secciones:**
-
-    Modifica los archivos en la carpeta `cv-sections/` para actualizar información personal, experiencia, educación y más.
-
-- **Actualizar Estilos:**
-
-    En caso de cambiar el diseño, puede editar el archivo `awesome-cv.cls` o los archivos de estilo asociados.
-
-- **Añadir Nuevos Contenidos:**
-
-    Puede agregar nuevas secciones o modificar las existentes para reflejar su información actualizada.
-
-## Integración Continua (CI)
-
-El repositorio cuenta con configuraciones de **GitHub Actions** para compilar el documento automáticamente. 
-
-Cada vez que realice un push o un pull request, se verificará que el CV compile sin errores, lo que ayuda a mantener la calidad y consistencia del documento.
+El workflow `.github/workflows/build-cvs.yml` compila automáticamente las 4 versiones en cada push a `main` (cuando cambia algún `.tex`, `awesome-cv.cls` o `fonts/`). Los PDFs generados se publican en la rama `curriculum-vitae-pdfs` y quedan disponibles como artefactos de la ejecución.

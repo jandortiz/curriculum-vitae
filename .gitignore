@@ -1,3 +1,6 @@
+## Build output
+output/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

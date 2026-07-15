@@ -1,0 +1,35 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[10pt, a4paper]{awesome-cv}
+
+\geometry{left=1.2cm, top=0.8cm, right=1.2cm, bottom=0.8cm, footskip=.4cm}
+\fontdir[fonts/]
+\definecolor{awesome}{HTML}{4A6fA5}
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+
+%--- Información personal ---
+\name{Jefferson Andrés}{García Ortiz}
+\mobile{(+34) 600 98 74 89}
+\email{jandortiz1890@gmail.com}
+\homepage{www.jandortiz.com}
+\github{jandortiz}
+\linkedin{jandortiz}
+
+\position{Desarrollador Python {\enskip\cdotp\enskip} Matemático}
+
+\makecvfooter{\today}{Jefferson Andrés García Ortiz~~~·~~~Curriculum}{\thepage}
+
+%---
+
+\begin{document}
+
+\makecvheader
+
+\input{cv-sections/developer/summary.tex}
+\input{cv-sections/developer/skills.tex}
+\input{cv-sections/developer/experience.tex}
+\input{cv-sections/developer/academic_experience.tex}
+\input{cv-sections/developer/education.tex}
+
+\end{document}

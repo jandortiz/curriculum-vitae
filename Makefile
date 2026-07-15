@@ -2,7 +2,7 @@ LATEXMK = latexmk
 OUTDIR  = output
 FLAGS   = -lualatex -outdir=$(OUTDIR) -interaction=nonstopmode
 
-CVS = cv-analyst-es cv-analyst-en cv-engineer-es cv-engineer-en
+CVS = cv-analyst-es cv-analyst-en cv-engineer-es cv-engineer-en cv-jefferson-ortiz cv-developer-en
 
 .PHONY: all clean $(CVS)
 

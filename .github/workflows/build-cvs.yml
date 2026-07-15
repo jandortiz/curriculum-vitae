@@ -44,34 +44,45 @@ jobs:
           root_file: cv-engineer-en.tex
           latexmk_use_lualatex: true
 
+      - name: Compile cv-jefferson-ortiz (general)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: cv-jefferson-ortiz.tex
+          latexmk_use_lualatex: true
+
+      - name: Compile cv-developer-en
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: cv-developer-en.tex
+          latexmk_use_lualatex: true
+
       - name: Get current date
         id: date
         run: echo "date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
-
-      - name: Push PDFs to branch
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-
-          if git show-ref --verify --quiet refs/remotes/origin/curriculum-vitae-pdfs; then
-            git checkout curriculum-vitae-pdfs
-          else
-            git checkout --orphan curriculum-vitae-pdfs
-            git rm -rf .
-          fi
-
-          for FILE in cv-analyst-es cv-analyst-en cv-engineer-es cv-engineer-en; do
-            if [ -f "${FILE}.pdf" ]; then
-              cp "${FILE}.pdf" "jefferson-garcia-${FILE#cv-}.pdf"
-            fi
-          done
-
-          git add jefferson-garcia-*.pdf
-          git commit -m "feat: Actualiza CVs - ${{ steps.date.outputs.date }}" || echo "No changes to commit"
-          git push origin curriculum-vitae-pdfs
 
       - name: Upload PDFs as artifacts
         uses: actions/upload-artifact@v4
         with:
           name: curriculum-vitae-pdfs
-          path: jefferson-garcia-*.pdf
+          path: cv-*.pdf
+
+      - name: Push general CV to branch
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          cp cv-jefferson-ortiz.pdf /tmp/cv-jefferson-ortiz.pdf
+          rm -f cv-*.pdf
+
+          if git show-ref --verify --quiet refs/remotes/origin/curriculum-vitae-pdf; then
+            git checkout curriculum-vitae-pdf
+            git rm -rf . || true
+          else
+            git checkout --orphan curriculum-vitae-pdf
+            git rm -rf .
+          fi
+
+          cp /tmp/cv-jefferson-ortiz.pdf cv-jefferson-ortiz.pdf
+          git add cv-jefferson-ortiz.pdf
+          git commit -m "feat: Actualiza CV general - ${{ steps.date.outputs.date }}" || echo "No changes to commit"
+          git push origin curriculum-vitae-pdf
